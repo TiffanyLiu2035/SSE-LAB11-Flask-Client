@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Search</title>
+</head>
+<body>
+    <h1>Book Search</h1>
+    <form action="/search" method="get">
+        <label for="genre">Enter Genre:</label>
+        <input type="text" id="genre" name="genre">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if books %}
+        <h2>Results for "{{ genre }}"</h2>
+        <ul>
+            {% for book in books %}
+                <li>{{ book['title'] }} by {{ book['author'] }} ({{ book['genre'] }})</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
